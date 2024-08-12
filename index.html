@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .leaderboard {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: black;
+            border: 2px solid white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px 10px rgba(255, 255, 255, 0.5);
+            padding: 20px;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid white;
+        }
+
+        .leaderboard-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Leaderboard</h1>
+    <div class="leaderboard" id="leaderboard"></div>
+
+    <script>
+        function loadLeaderboard() {
+            const leaderboardElement = document.getElementById('leaderboard');
+            const highScore = localStorage.getItem('highScore');
+            const username = localStorage.getItem('username');
+
+            if (highScore && username) {
+                const item = document.createElement('div');
+                item.className = 'leaderboard-item';
+                item.innerHTML = `<span>${username}</span><span>${highScore} Clicks</span>`;
+                leaderboardElement.appendChild(item);
+            } else {
+                leaderboardElement.innerHTML = '<p>No scores yet!</p>';
+            }
+        }
+
+        loadLeaderboard();
+    </script>
+</body>
+</html>
